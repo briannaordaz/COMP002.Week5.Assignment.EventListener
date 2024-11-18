@@ -48,3 +48,9 @@ document.addEventListener('keydown', (event) => {
 // function as expected. There are many ways to accomplish this task, but you will need
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring it
+
+// assigned "#tabbed-layout, ul, li, a" to the word "linkforTabs"
+const linkForTabs = document.querySelectorAll('#tabbed-layout > ul > li > a');
+// assigned all tabbed contents and div to the word "contentForTabs"
+const contentForTabs = document.querySelectorAll('tabbed-contents > div')
+
