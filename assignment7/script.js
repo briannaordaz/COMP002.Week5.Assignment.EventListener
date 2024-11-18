@@ -12,6 +12,9 @@
 // Hint: Make sure you quote the emoji characters. They are strings, after all.
 // Hint: document.getElementById("balloon") will get the balloon element on the page.
 
+
+
+
 const balloon = document.getElementById('balloon');
 // using a css standard property and assigning it to 20
 let fontSize = 20;
@@ -33,13 +36,16 @@ document.addEventListener('keydown', (event) => {
             //this will remove the event listener after pressing the key down and after it meets the condition(originalSize >= largeSize). Since there is no function called, the arguments.callee is being used.
             document.removeEventListener('keydown', arguments.callee);
         } else {
-            // this allows us to access the CSS and change the font size
+            // this allows us to access the CSS file and change the font size
             balloon.style.fontSize = fontSize + 'px'; 
         }
         // this will prevent scrolling on the page 
         event.preventDefault();
     }
 });
+
+
+
 
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
 // the first tab, and make it so that when you click the links at the top the correct
@@ -49,8 +55,41 @@ document.addEventListener('keydown', (event) => {
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring it
 
-// assigned "#tabbed-layout, ul, li, a" to the word "linkforTabs"
+
+
+
+// assigned "#tabbed-layout, ul, li, a" to the word "linkForTabs"
 const linkForTabs = document.querySelectorAll('#tabbed-layout > ul > li > a');
 // assigned all tabbed contents and div to the word "contentForTabs"
 const contentForTabs = document.querySelectorAll('tabbed-contents > div')
 
+// named the function "show" 
+function show(tabIndex) {
+
+    contentForTabs.forEach((tab, ind) => {
+        // this is an 'if' statement, and the "ind === tabIndex" will check if 'ind' is equal to 'tabIndex'
+        if (ind === tabIndex) {
+            // this will make the tab visible if it's true that ind ==== tabIndex
+            tab.style.display = 'block'; 
+            // the else code will only run if the condition in the 'if' code is false
+        } else {
+            // this will hide the tabs if the code above is false
+            tab.style.display = 'none';
+        }
+    });
+}
+
+
+// this will initialize the first tab that you can see
+show(0);
+
+// this will allow us to access the link and index(ind)
+linkForTabs.forEach((link, ind) => {
+    // this will add an event listener to the links, which makes the links function 
+    link.addEventListener('click', (event) => {
+        // this will prevent the default response of the event 
+        event.preventDefault();
+        // this will make the code execute
+        show(ind);
+    })
+})
