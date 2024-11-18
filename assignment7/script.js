@@ -16,11 +16,24 @@ const balloon = document.getElementById('balloon');
 // this is the original font size 
 let originalSize = 20;
 // and this is the max font size
-let largeSize = 100;
+let largeSize = 90;
 
 // added an event listener for "keydown" so that when we press on a key, it would function.
 document.addEventListener('keydown', (event) => {
-    if (!balloon.textContent.includes('balloon')) return;
+    if (!balloon.textContent.includes('🎈')) return;
+
+        // if the "ArrowUp" key is pressed
+    if (event.key === 'ArrowUp') {
+        // then the balloon size will increase by 10%
+        originalSize = 1.1;
+        // and if the original size is greater than the max size then:
+        if (originalSize >= largeSize) {
+            // then the 🎈 emoji will be replaced with a 💥 emoji
+            balloon.textContent = '💥';
+            //the argument.callee lets the event listener get removed if it meets the condition (originalSize >= largeSize)
+            document.removeEventListener('keydown', arguments.callee)
+        }
+    }
 })
 
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
