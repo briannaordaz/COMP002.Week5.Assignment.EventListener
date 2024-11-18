@@ -13,10 +13,10 @@
 // Hint: document.getElementById("balloon") will get the balloon element on the page.
 
 const balloon = document.getElementById('balloon');
-// this is the original font size 
-let originalSize = 20;
+// using a css standard property and assigning it to 20
+let fontSize = 20;
 // and this is the max font size
-let largeSize = 90;
+let maxSize = 90;
 
 // added an event listener for "keydown" so that when we press on a key, it would function.
 document.addEventListener('keydown', (event) => {
@@ -27,14 +27,19 @@ document.addEventListener('keydown', (event) => {
         // then the balloon size will increase by 10%
         originalSize = 1.1;
         // and if the original size is greater than the max size then:
-        if (originalSize >= largeSize) {
+        if (fontSize >= maxSize) {
             // then the 🎈 emoji will be replaced with a 💥 emoji
             balloon.textContent = '💥';
-            //the argument.callee lets the event listener get removed if it meets the condition (originalSize >= largeSize)
-            document.removeEventListener('keydown', arguments.callee)
+            //this will remove the event listener after pressing the key down and after it meets the condition(originalSize >= largeSize). Since there is no function called, the arguments.callee is being used.
+            document.removeEventListener('keydown', arguments.callee);
+        } else {
+            // this allows us to access the CSS and change the font size
+            balloon.style.fontSize = fontSize + 'px'; 
         }
+        // this will prevent scrolling on the page 
+        event.preventDefault();
     }
-})
+});
 
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
 // the first tab, and make it so that when you click the links at the top the correct
