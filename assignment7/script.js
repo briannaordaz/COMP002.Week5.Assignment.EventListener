@@ -12,6 +12,17 @@
 // Hint: Make sure you quote the emoji characters. They are strings, after all.
 // Hint: document.getElementById("balloon") will get the balloon element on the page.
 
+const balloon = document.getElementById('balloon');
+// this is the original font size 
+let originalSize = 20;
+// and this is the max font size
+let largeSize = 100;
+
+// added an event listener for "keydown" so that when we press on a key, it would function.
+document.addEventListener('keydown', (event) => {
+    if (!balloon.textContent.includes('balloon')) return;
+})
+
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
 // the first tab, and make it so that when you click the links at the top the correct
 // tab's contents are displayed and the others are hidden. Prevent the default action of
